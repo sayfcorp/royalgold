@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>ROYAL GOLD | Tienda</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4af37;--gold2:#f1d98a;--bg:#000;--card:#0e0c07;--line:#3a2f10;--tx:#ece6d6;--mut:#a89f86}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.65 Montserrat,system-ui,sans-serif;padding-bottom:80px}
+h1,h2,h3,.logo{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;color:var(--gold);line-height:1.15}
+a{color:var(--gold2)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font-size:2.2rem;margin-bottom:8px}
+.sub{color:var(--mut);max-width:60ch;margin-bottom:32px}
+header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.7rem;letter-spacing:.12em}
+nav a{margin-left:20px;text-decoration:none;font-size:.9rem;color:var(--tx)}
+nav a:hover{color:var(--gold)}
+.hero{text-align:center;padding:96px 0 80px;background:radial-gradient(ellipse at top,#2a2007 0%,#000 65%);border:0}
+.hero h1{font-size:clamp(3rem,10vw,6.5rem);letter-spacing:.08em;background:linear-gradient(180deg,var(--gold2),var(--gold) 55%,#8a6d17);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:18px auto 30px;max-width:46ch;color:var(--mut);font-size:1.05rem}
+.btn{display:inline-block;border:0;cursor:pointer;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000;font:600 1rem Montserrat,sans-serif;padding:14px 28px;border-radius:2px;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}
+.btn.line{background:none;border:1px solid var(--gold);color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+.prod{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
+.prod img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.pb{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.pb h3{font-size:1.7rem}
+.price{font-size:1.4rem;color:var(--gold2);font-weight:600}
+details{border-top:1px solid var(--line);padding:10px 0;font-size:.92rem;color:var(--mut)}
+summary{cursor:pointer;color:var(--tx);font-weight:600}
+details p{margin-top:6px;white-space:pre-line}
+.pb .btn{margin-top:auto}
+.cartrow{display:grid;grid-template-columns:1fr auto auto;gap:8px 16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.qty{display:flex;align-items:center;border:1px solid var(--line)}
+.qty button{background:none;border:0;color:var(--gold);font-size:1.2rem;width:36px;height:36px;cursor:pointer}
+.qty span{min-width:32px;text-align:center}
+.rm{background:none;border:0;color:var(--mut);text-decoration:underline;cursor:pointer;font-size:.85rem}
+.total{display:flex;justify-content:space-between;font-size:1.4rem;padding:18px 0;color:var(--gold2);font-weight:600}
+.empty{color:var(--mut);padding:20px 0}
+.box{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+form{display:grid;gap:14px}
+label{font-size:.9rem;color:var(--mut);display:grid;gap:6px}
+input,select,textarea{width:100%;background:#0b0b0b;border:1px solid var(--line);color:var(--tx);padding:12px;font:inherit;border-radius:2px}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.note{font-size:.85rem;color:var(--mut)}
+.aviso{border:1px solid var(--gold);background:#17130a;color:var(--gold2);padding:12px 14px;font-size:.9rem;border-radius:2px}
+.aviso[hidden]{display:none}
+ul.pts{list-style:none;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+ul.pts li{border:1px solid var(--line);padding:16px;background:var(--card)}
+.social{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+footer{text-align:center;padding:32px 20px;color:var(--mut);font-size:.85rem;border-top:1px solid var(--line)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0));z-index:30;background:var(--gold);color:#000;text-decoration:none;font-weight:600;padding:14px 20px;border-radius:40px;box-shadow:0 4px 20px rgba(212,175,55,.35)}
+#adm{position:fixed;inset:0;z-index:100;background:#000;overflow:auto;padding:24px 0 110px}
+#adm h3{margin:28px 0 8px;font-size:1.6rem}
+#adm label{margin-top:10px}
+.aprod{border:1px solid var(--line);background:var(--card);padding:16px;margin:16px 0}
+.aprod img{width:120px;height:120px;object-fit:cover;border:1px solid var(--line);display:block;margin-bottom:8px}
+.abar{position:fixed;left:0;right:0;bottom:0;z-index:101;background:#0e0c07;border-top:1px solid var(--gold);padding:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0));display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.abar .btn,#adm .btn{padding:10px 16px;font-size:.85rem;margin:8px 8px 0 0}
+[hidden]{display:none!important}
+.logo{display:flex;align-items:center}
+.logoimg{height:44px;width:auto;display:block}
+.hero .logoimg{height:120px;margin:0 auto 14px}
+footer .logoimg{height:52px;margin:0 auto 14px}
+.discre{max-width:640px;margin:0 auto 28px;padding:14px 18px;border:1px solid var(--gold);background:linear-gradient(180deg,#1a1405,#0a0802);color:var(--gold2);text-align:center;font:500 1.25rem/1.4 "Cormorant Garamond",Georgia,serif}
+.discre:empty{display:none}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.tag{display:inline-block;margin-left:8px;font-size:.75rem;border:1px solid var(--gold);color:var(--gold);padding:0 8px;vertical-align:middle}
+.chk{display:flex!important;align-items:center;gap:10px;color:var(--tx)}
+input[type=checkbox]{width:auto}
+@media(max-width:640px){nav a:not(.keep){display:none}section{padding:48px 0}.cartrow{grid-template-columns:1fr auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="#inicio" style="text-decoration:none"><img id="logo-h" class="logoimg" alt="ROYAL GOLD" hidden><span id="logo-txt">ROYAL GOLD</span></a>
+  <nav><a href="#catalogo">Catálogo</a><a href="#entregas">Entregas</a><a href="#discrecion">Discreción</a><a href="#contacto">Contacto</a><a class="keep" href="#pedido">Mi pedido</a></nav>
+</div></header>
+
+<section class="hero" id="inicio"><div class="wrap">
+  <img id="logo-hero" class="logoimg" alt="ROYAL GOLD" hidden>
+  <h1 id="hero-txt">ROYAL GOLD</h1>
+  <p>Elige tus productos, arma tu pedido y envíalo por WhatsApp. Nosotros confirmamos disponibilidad y entrega.</p>
+  <div class="discre" data-discre></div>
+  <a class="btn" href="#catalogo">Ver catálogo</a>
+</div></section>
+
+<section id="catalogo"><div class="wrap">
+  <h2>Catálogo</h2>
+  <p class="sub">Toca cada producto para ver su descripción, ingredientes, beneficios y modo de uso.</p>
+  <div class="discre" data-discre></div>
+  <div class="grid" id="productos"></div>
+</div></section>
+
+<section id="pedido"><div class="wrap">
+  <h2>Tu pedido</h2>
+  <p class="sub">Revisa cantidades y completa los datos de entrega. No hay pagos en línea: el pago y la entrega se acuerdan por WhatsApp.</p>
+  <div class="box">
+    <div>
+      <div id="carrito"></div>
+    </div>
+    <form id="form" novalidate>
+      <label>Nombre del cliente<input id="nombre" autocomplete="name" placeholder="Tu nombre" required></label>
+      <label>Punto de entrega<select id="punto" required></select></label>
+      <p class="aviso" id="aviso-punto" hidden></p>
+      <p class="aviso">📅 La fecha y el horario de entrega se acuerdan por WhatsApp. Haz tu pedido con anticipación</p>
+      <label>Comentarios (opcional)<textarea id="coment" rows="3" placeholder="Si tienes una fecha u horario preferido, escríbelo aquí, junto con cualquier duda o indicación"></textarea></label>
+      <p class="note">La fecha u horario que escribas es solo una preferencia y está sujeto a confirmación. En UTTECAM el edificio se acuerda contigo por WhatsApp.</p>
+      <button type="submit" class="btn">Enviar pedido por WhatsApp</button>
+    </form>
+  </div>
+</div></section>
+
+<section id="entregas"><div class="wrap">
+  <h2>Puntos de entrega</h2>
+  <p class="sub">Entregamos en persona en estos lugares. Elige el que te quede mejor al hacer tu pedido.</p>
+  <ul class="pts" id="lista-puntos"></ul>
+</div></section>
+
+<section id="discrecion"><div class="wrap">
+  <h2>Entregas 100% discretas</h2>
+  <p class="sub">Tu privacidad es lo primero. El empaque es neutro, no lleva nombre de producto a la vista y tus datos solo se usan para coordinar tu entrega.</p>
+</div></section>
+
+<section id="contacto"><div class="wrap">
+  <h2>Contacto y redes</h2>
+  <p class="sub">Escríbenos para cualquier duda antes de hacer tu pedido.</p>
+  <a class="btn" id="wa-contacto" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  <div class="social" id="redes"></div>
+</div></section>
+
+<footer><img id="logo-f" class="logoimg" alt="ROYAL GOLD" hidden><div class="discre" data-discre></div>© ROYAL GOLD. Venta solo a mayores de 18 años. Productos sujetos a disponibilidad.<br><a href="#" onclick="openAdmin();return false" style="color:inherit;opacity:.45;font-size:.75rem;text-decoration:none">Administrador</a></footer>
+<a class="fab" href="#pedido" id="fab">Mi pedido (0)</a>
+
+<script>
+/* ===== FIREBASE: pega aquí los datos de tu proyecto (copia el firebaseConfig que te da Firebase) ===== */
+window.FIREBASE_CONFIG = { apiKey:"", authDomain:"", projectId:"", appId:"" };
+</script>
+<script id="rg-config" type="application/json">
+{
+ "whatsapp": "525560794751",
+ "redes": {
+  "instagram": "https://www.instagram.com/",
+  "facebook": "https://www.facebook.com/"
+ },
+ "productos": [
+  {
+   "id": "royal-honey",
+   "nombre": "ROYAL HONEY",
+   "precio": 100,
+   "imagen": "",
+   "descripcion": "Escribe aquí la descripción de ROYAL HONEY.",
+   "ingredientes": "Escribe aquí los ingredientes, tal como dice la etiqueta.",
+   "beneficios": "Escribe aquí los beneficios que quieres comunicar.",
+   "uso": "Escribe aquí el modo de uso indicado en el empaque.",
+   "disponible": true
+  },
+  {
+   "id": "pink-pussycat",
+   "nombre": "PINK PUSSYCAT",
+   "precio": 100,
+   "imagen": "",
+   "descripcion": "Escribe aquí la descripción de PINK PUSSYCAT.",
+   "ingredientes": "Escribe aquí los ingredientes, tal como dice la etiqueta.",
+   "beneficios": "Escribe aquí los beneficios que quieres comunicar.",
+   "uso": "Escribe aquí el modo de uso indicado en el empaque.",
+   "disponible": true
+  },
+  {
+   "id": "black-horse",
+   "nombre": "BLACK HORSE",
+   "precio": 110,
+   "imagen": "",
+   "descripcion": "Escribe aquí la descripción de BLACK HORSE.",
+   "ingredientes": "Escribe aquí los ingredientes, tal como dice la etiqueta.",
+   "beneficios": "Escribe aquí los beneficios que quieres comunicar.",
+   "uso": "Escribe aquí el modo de uso indicado en el empaque.",
+   "disponible": true
+  }
+ ],
+ "puntos": [
+  {
+   "n": "San Gabriel Tetzoyocan",
+   "direccion": "",
+   "aviso": "",
+   "activo": true
+  },
+  {
+   "n": "Alseseca, frente a Farmacias Similares sobre la carretera",
+   "direccion": "",
+   "aviso": "",
+   "activo": true
+  },
+  {
+   "n": "Yehualtepec, Parque del Centro",
+   "direccion": "",
+   "aviso": "",
+   "activo": true
+  },
+  {
+   "n": "Tlacotepec, parque",
+   "aviso": "📍 Entregas en Tlacotepec únicamente los viernes, de 3:00 p. m. a 4:00 p. m.",
+   "direccion": "",
+   "activo": true
+  },
+  {
+   "n": "Tecamachalco, Parque Ávila",
+   "direccion": "",
+   "aviso": "",
+   "activo": true
+  },
+  {
+   "n": "UTTECAM, edificio por acordar",
+   "direccion": "",
+   "aviso": "",
+   "activo": true
+  }
+ ],
+ "logo": "",
+ "discrecion": "🤫 En ROYAL GOLD, tus pedidos se entregan con total discreción. Tu privacidad es nuestra prioridad. 👑🍯"
+}
+</script>
+<script>
+/* Valores de arranque. Lo que publiques desde el panel (Firebase) los reemplaza automáticamente. */
+let CFG0 = JSON.parse(document.getElementById("rg-config").textContent), CFG = CFG0;
+let WHATSAPP = CFG.whatsapp, PRODUCTOS = CFG.productos, PUNTOS = CFG.puntos;
+
+const $ = id => document.getElementById(id);
+const money = n => "$" + n.toLocaleString("es-MX") + " MXN";
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("rg_cart") || "{}"); } catch(e) {}
+const save = () => { try { localStorage.setItem("rg_cart", JSON.stringify(cart)); } catch(e) {} };
+limpiarCarrito();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function placeholder(nombre){
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a2007"/><stop offset="1" stop-color="#000"/></linearGradient></defs><rect width="400" height="400" fill="url(#g)"/><rect x="16" y="16" width="368" height="368" fill="none" stroke="#d4af37" stroke-width="2"/><text x="200" y="195" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#d4af37">${nombre}</text><text x="200" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#a89f86">Agrega tu fotografía aquí</text></svg>`;
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+function renderProductos(){
+  $("productos").innerHTML = PRODUCTOS.map(p => `
+    <article class="prod">
+      <img src="${esc(p.imagen || placeholder(p.nombre))}" alt="${esc(p.nombre)}" loading="lazy" onerror="this.onerror=null;this.src='${placeholder(p.nombre)}'">
+      <div class="pb">
+        <h3>${esc(p.nombre)}</h3>
+        <div class="price">${money(p.precio)}${p.disponible===false?'<span class="tag">Agotado</span>':""}</div>
+        <details><summary>Descripción</summary><p>${esc(p.descripcion)}</p></details>
+        <details><summary>Ingredientes</summary><p>${esc(p.ingredientes)}</p></details>
+        <details><summary>Beneficios</summary><p>${esc(p.beneficios)}</p></details>
+        <details><summary>Modo de uso</summary><p>${esc(p.uso)}</p></details>
+        ${p.disponible===false?`<button class="btn" disabled>Agotado</button>`:`<button class="btn" data-add="${p.id}">Agregar al pedido</button>`}
+      </div>
+    </article>`).join("");
+}
+
+function renderCarrito(){
+  const ids = Object.keys(cart).filter(id => cart[id] > 0);
+  let total = 0, count = 0;
+  let html = ids.map(id => {
+    const p = PRODUCTOS.find(x => x.id === id); if(!p) return "";
+    const q = cart[id], sub = q * p.precio; total += sub; count += q;
+    return `<div class="cartrow">
+      <div><strong>${esc(p.nombre)}</strong><br><span class="note">${money(p.precio)} c/u</span></div>
+      <div class="qty"><button type="button" data-dec="${id}" aria-label="Quitar uno">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="Agregar uno">+</button></div>
+      <div style="text-align:right"><strong>${money(sub)}</strong><br><button type="button" class="rm" data-del="${id}">Eliminar</button></div>
+    </div>`;
+  }).join("");
+  $("carrito").innerHTML = ids.length
+    ? html + `<div class="total"><span>Total</span><span>${money(total)}</span></div>`
+    : `<p class="empty">Tu pedido está vacío. Agrega productos desde el catálogo.</p>`;
+  $("fab").textContent = `Mi pedido (${count})`;
+  save();
+  return total;
+}
+
+document.addEventListener("click", e => {
+  const t = e.target;
+  if(t.dataset.add){ cart[t.dataset.add] = (cart[t.dataset.add]||0) + 1; renderCarrito(); t.textContent = "Agregado"; setTimeout(()=>t.textContent="Agregar al pedido",900); }
+  if(t.dataset.inc){ cart[t.dataset.inc]++; renderCarrito(); }
+  if(t.dataset.dec){ cart[t.dataset.dec] = Math.max(0, cart[t.dataset.dec]-1); if(!cart[t.dataset.dec]) delete cart[t.dataset.dec]; renderCarrito(); }
+  if(t.dataset.del){ delete cart[t.dataset.del]; renderCarrito(); }
+});
+
+/* Formulario */
+function renderPuntos(){
+  const sel = $("punto"), prev = sel.value, act = PUNTOS.map((p,i) => [p,i]).filter(x => x[0].activo !== false);
+  sel.innerHTML = `<option value="">Elige un punto</option>` + act.map(([p,i]) => `<option value="${i}">${esc(p.n)}</option>`).join("");
+  if(act.some(x => String(x[1]) === prev)) sel.value = prev;
+  sel.dispatchEvent(new Event("change"));
+  $("lista-puntos").innerHTML = act.map(([p]) => `<li><strong>${esc(p.n)}</strong>${p.direccion ? `<br>${esc(p.direccion)}` : ""}${p.aviso ? `<br><span class="note">${esc(p.aviso)}</span>` : ""}</li>`).join("");
+}
+$("punto").addEventListener("change", () => {
+  const p = PUNTOS[$("punto").value], av = $("aviso-punto");
+  av.textContent = p && p.aviso ? p.aviso : "";
+  av.hidden = !(p && p.aviso);
+});
+$("wa-contacto").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, tengo una duda sobre ROYAL GOLD.")}`;
+
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const ids = Object.keys(cart).filter(id => cart[id] > 0);
+  const nombre = $("nombre").value.trim(), pi = $("punto").value;
+  if(!ids.length) return alert("Agrega al menos un producto a tu pedido.");
+  if(!nombre) return alert("Escribe tu nombre.");
+  if(pi === "") return alert("Elige el punto de entrega.");
+  const punto = PUNTOS[pi];
+
+  let total = 0;
+  const lineas = ids.map(id => {
+    const p = PRODUCTOS.find(x => x.id === id), q = cart[id], sub = q * p.precio; total += sub;
+    return `• ${q} x ${p.nombre} (${money(p.precio)} c/u) = ${money(sub)}`;
+  });
+  const msg = [
+    "*NUEVO PEDIDO - ROYAL GOLD*", "",
+    `*Cliente:* ${nombre}`, "",
+    "*Productos:*", ...lineas, "",
+    `*TOTAL: ${money(total)}*`, "",
+    "*Entrega:*",
+    `Punto: ${punto.n}${punto.direccion ? " (" + punto.direccion + ")" : ""}`,
+    ...(punto.aviso ? [punto.aviso] : []),
+    `Comentarios (fecha u horario preferido, sujeto a confirmación): ${$("coment").value.trim() || "Sin comentarios"}`, "",
+    "Solicito confirmar por WhatsApp la fecha y el horario de mi entrega.",
+    "Quedo atento(a) a la confirmación de disponibilidad. ¡Gracias!"
+  ].join("\n");
+  const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  window.open(url, "_blank") || (location.href = url);
+});
+
+/* ===== PANEL DE ADMINISTRADOR (guarda en Firebase) ===== */
+function toImg(file, cb, max = 700, type = "image/jpeg", q = .78){
+  const r = new FileReader();
+  r.onload = () => { const im = new Image(); im.onload = () => {
+    const k = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement("canvas");
+    c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+    c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+    cb(c.toDataURL(type, q));
+  }; im.src = r.result; };
+  r.readAsDataURL(file);
+}
+function limpiarCarrito(){ Object.keys(cart).forEach(id => { const p = PRODUCTOS.find(x => x.id === id); if(!p || p.disponible === false) delete cart[id]; }); }
+function renderMarca(){
+  const l = CFG.logo || "";
+  ["logo-h","logo-hero","logo-f"].forEach(id => { const im = $(id); im.hidden = !l; if(l) im.src = l; });
+  $("logo-txt").hidden = !!l; $("hero-txt").hidden = !!l;
+  document.querySelectorAll("[data-discre]").forEach(e => e.textContent = CFG.discrecion || "");
+}
+/* Llamada por Firebase cada vez que publicas cambios: la tienda se actualiza sola */
+window.rgApply = d => {
+  CFG = Object.assign({}, CFG0, d); WHATSAPP = CFG.whatsapp; PRODUCTOS = CFG.productos || []; PUNTOS = CFG.puntos || [];
+  limpiarCarrito(); renderProductos(); renderCarrito(); renderPuntos(); renderRedes(); renderMarca();
+  $("wa-contacto").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, tengo una duda sobre ROYAL GOLD.")}`;
+};
+function openAdmin(){
+  if($("adm")) return;
+  const box = document.createElement("div"); box.id = "adm"; document.body.appendChild(box);
+  const msg = t => { box.innerHTML = `<div class="wrap" style="max-width:520px"><h2>Administrador</h2><p class="sub">${t}</p><button class="btn line" data-a="close">Cerrar</button></div>`; box.onclick = e => { if(e.target.dataset.a === "close") box.remove(); }; };
+  if(!window.FIREBASE_CONFIG || !window.FIREBASE_CONFIG.apiKey) return msg("La nube todavía no está conectada. Pega los datos de tu proyecto Firebase en la sección FIREBASE del archivo index.html y vuelve a subirlo.");
+  if(!window.RGFB) return msg("Conectando con la nube. Intenta de nuevo en unos segundos; si sigue igual, revisa tu internet y que los datos de Firebase estén bien copiados.");
+  const FB = window.RGFB; let D = null;
+  const login = (err = "") => {
+    box.innerHTML = `<div class="wrap" style="max-width:420px"><h2>Administrador</h2><p class="sub">Inicia sesión para gestionar tu tienda.</p>
+      <label>Correo<input id="lg-u" type="email" autocomplete="username"></label>
+      <label>Contraseña<input id="lg-p" type="password" autocomplete="current-password"></label>
+      <p class="note" style="color:#e88;min-height:1.4em">${err}</p>
+      <button class="btn" data-a="in">Entrar</button><button class="btn line" data-a="close">Cerrar</button></div>`;
+    box.oninput = box.onchange = null;
+    box.onclick = async e => {
+      const a = e.target.dataset.a;
+      if(a === "close") box.remove();
+      if(a === "in"){ try { await FB.login($("lg-u").value.trim(), $("lg-p").value); } catch(x){ login("Correo o contraseña incorrectos."); } }
+    };
+  };
+  const f = (l,k,v,t) => `<label>${l}${t==="area" ? `<textarea data-k="${k}" rows="3">${esc(v||"")}</textarea>` : `<input data-k="${k}" value="${esc(v ?? "")}"${t==="num" ? ' type="number" min="0"' : ""}>`}</label>`;
+  const c = (l,k,v) => `<label class="chk"><input type="checkbox" data-k="${k}"${v !== false ? " checked" : ""}>${l}</label>`;
+  const draw = () => {
+    const st = box.scrollTop, n = D.productos.length;
+    box.innerHTML = `<div class="wrap"><h2>Panel de administrador</h2>
+      <p class="note">Sesión iniciada. Tus cambios llegan a la tienda al tocar «Publicar cambios».</p>
+      <h3>Mi logotipo</h3>
+      ${D.logo ? `<img src="${esc(D.logo)}" alt="" style="height:80px;display:block;margin:8px 0;background:#111;padding:6px">` : `<p class="note">Aún no has subido un logotipo.</p>`}
+      <input type="file" accept="image/*" data-logo="1">${D.logo ? `<button class="btn line" data-a="nologo">Quitar logotipo</button>` : ""}
+      <h3>General</h3>
+      ${f("Mensaje de discreción","discrecion",D.discrecion,"area")}
+      ${f("WhatsApp (con 52, sin + ni espacios)","whatsapp",D.whatsapp)}
+      ${f("Instagram (enlace; vacío para ocultar)","redes.instagram",D.redes.instagram)}
+      ${f("Facebook (enlace; vacío para ocultar)","redes.facebook",D.redes.facebook)}
+      <h3>Productos</h3>
+      ${D.productos.map((p,i) => `<div class="aprod">
+        <img src="${esc(p.imagen || placeholder(p.nombre))}" alt="">
+        <input type="file" accept="image/*" data-img="${i}">
+        ${p.imagen ? `<button class="btn line" data-a="noimg" data-i="${i}">Quitar foto</button>` : ""}
+        ${c("Disponible (desmárcalo para marcarlo como agotado)",`productos.${i}.disponible`,p.disponible)}
+        ${f("Nombre",`productos.${i}.nombre`,p.nombre)}
+        ${f("Precio (MXN)",`productos.${i}.precio`,p.precio,"num")}
+        ${f("Descripción",`productos.${i}.descripcion`,p.descripcion,"area")}
+        ${f("Ingredientes",`productos.${i}.ingredientes`,p.ingredientes,"area")}
+        ${f("Beneficios",`productos.${i}.beneficios`,p.beneficios,"area")}
+        ${f("Modo de uso",`productos.${i}.uso`,p.uso,"area")}
+        ${i > 0 ? `<button class="btn line" data-a="up" data-i="${i}">Subir</button>` : ""}${i < n-1 ? `<button class="btn line" data-a="dn" data-i="${i}">Bajar</button>` : ""}
+        <button class="btn line" data-a="delp" data-i="${i}">Eliminar producto</button></div>`).join("")}
+      <button class="btn" data-a="addp">Agregar producto</button>
+      <h3>Puntos de entrega</h3>
+      ${D.puntos.map((q,i) => `<div class="aprod">
+        ${c("Punto activo (desmárcalo para desactivarlo temporalmente)",`puntos.${i}.activo`,q.activo)}
+        ${f("Nombre",`puntos.${i}.n`,q.n)}
+        ${f("Dirección",`puntos.${i}.direccion`,q.direccion)}
+        ${f("Días y horario particulares (se muestra al elegir el punto y va en el mensaje de WhatsApp)",`puntos.${i}.aviso`,q.aviso,"area")}
+        <button class="btn line" data-a="delq" data-i="${i}">Quitar punto</button></div>`).join("")}
+      <button class="btn" data-a="addq">Agregar punto de entrega</button></div>
+      <div class="abar"><button class="btn" data-a="save">Publicar cambios</button><button class="btn line" data-a="out">Cerrar sesión</button><button class="btn line" data-a="close">Cerrar panel</button></div>`;
+    box.scrollTop = st;
+  };
+  const upd = e => {
+    const t = e.target, k = t.dataset.k; if(!k) return;
+    const a = k.split("."); let o = D; for(let i = 0; i < a.length - 1; i++) o = o[a[i]];
+    o[a[a.length-1]] = t.type === "checkbox" ? t.checked : t.type === "number" ? (Number(t.value) || 0) : t.value;
+  };
+  const start = () => {
+    D = JSON.parse(JSON.stringify(CFG)); D.redes = D.redes || {};
+    box.oninput = upd;
+    box.onchange = e => {
+      upd(e); const fl = e.target.files && e.target.files[0]; if(!fl) return;
+      if(e.target.dataset.logo) toImg(fl, d => { D.logo = d; draw(); }, 360, "image/webp", .9);
+      else if(e.target.dataset.img !== undefined) toImg(fl, d => { D.productos[e.target.dataset.img].imagen = d; draw(); });
+    };
+    box.onclick = async e => {
+      const a = e.target.dataset.a, i = +e.target.dataset.i, P = D.productos; if(!a) return;
+      if(a === "addp") P.push({id:"p"+Date.now(), nombre:"NUEVO PRODUCTO", precio:100, imagen:"", disponible:true, descripcion:"", ingredientes:"", beneficios:"", uso:""});
+      if(a === "delp" && confirm("¿Eliminar este producto?")) P.splice(i,1);
+      if(a === "noimg") P[i].imagen = "";
+      if(a === "up" && i > 0) [P[i-1], P[i]] = [P[i], P[i-1]];
+      if(a === "dn" && i < P.length-1) [P[i+1], P[i]] = [P[i], P[i+1]];
+      if(a === "nologo") D.logo = "";
+      if(a === "addq") D.puntos.push({n:"Nuevo punto de entrega", direccion:"", aviso:"", activo:true});
+      if(a === "delq" && confirm("¿Quitar este punto de entrega?")) D.puntos.splice(i,1);
+      if(a === "save"){
+        const out = JSON.parse(JSON.stringify(D));
+        if(JSON.stringify(out).length > 950000){ alert("Las imágenes pesan demasiado para guardarse (el límite total es cercano a 1 MB). Quita alguna foto o usa menos productos con foto."); return; }
+        try { await FB.save(out); alert("¡Cambios publicados! Ya se ven en tu tienda."); }
+        catch(x){ alert("No se pudo guardar. Revisa que entraste con la cuenta de administrador y que las reglas de Firestore estén publicadas. Código: " + (x.code || x.message)); }
+        return;
+      }
+      if(a === "out"){ await FB.logout(); return; }
+      if(a === "close"){ box.remove(); return; }
+      draw();
+    };
+    draw();
+  };
+  FB.onUser(u => { if(!document.body.contains(box)) return; if(u) start(); else { D = null; login(); } });
+}
+function renderRedes(){
+  const r = CFG.redes || {};
+  $("redes").innerHTML = [["Instagram", r.instagram],["Facebook", r.facebook]].filter(x => x[1]).map(x => `<a class="btn line" href="${esc(x[1])}" target="_blank" rel="noopener">${x[0]}</a>`).join("");
+}
+window.addEventListener("hashchange", () => { if(location.hash === "#admin") openAdmin(); });
+
+renderProductos();
+renderCarrito();
+renderPuntos();
+renderRedes();
+renderMarca();
+if(location.hash === "#admin") openAdmin();
+</script>
+<script type="module">
+const C = window.FIREBASE_CONFIG;
+if(C && C.apiKey){
+  try {
+    const b = "https://www.gstatic.com/firebasejs/10.12.2/";
+    const [A, F, T] = await Promise.all([import(b+"firebase-app.js"), import(b+"firebase-firestore.js"), import(b+"firebase-auth.js")]);
+    const app = A.initializeApp(C), db = F.getFirestore(app), auth = T.getAuth(app), ref = F.doc(db, "tienda", "config");
+    window.RGFB = {
+      login: (e,p) => T.signInWithEmailAndPassword(auth, e, p),
+      logout: () => T.signOut(auth),
+      onUser: cb => T.onAuthStateChanged(auth, cb),
+      save: d => F.setDoc(ref, d)
+    };
+    F.onSnapshot(ref, s => { if(s.exists()) window.rgApply(s.data()); }, err => console.warn("Firestore:", err.code));
+  } catch(err){ console.warn("Firebase no disponible", err); }
+}
+</script>
+</body>
+</html>
